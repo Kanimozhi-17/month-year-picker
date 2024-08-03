@@ -1,4 +1,4 @@
-# @aekimena/month-year-picker
+# aekimena-month-year-picker
 
 A customizable month-year picker component for React Native. Easily integrate a month-year picker with various customization options to fit your app's design.
 
@@ -7,19 +7,19 @@ A customizable month-year picker component for React Native. Easily integrate a 
 You can install the package via npm or yarn:
 
 ```bash
-  npm install @aekimena/month-year-picker
+  npm install aekimena-month-year-picker
 ```
 
 or
 
 ```bash
-  yarn add @aekimena/month-year-picker
+  yarn add aekimena-month-year-picker
 ```
 
 ## Basic Usage
 
 ```javascript
-import MonthYearPicker from "@aekimena/month-year-picker";
+import MonthYearPicker from "aekimena-month-year-picker";
 
 const App = () => {
   const [visible, setVisible] = useState(false);
@@ -45,6 +45,7 @@ const App = () => {
     </View>
   );
 };
+
 export default App;
 ```
 
