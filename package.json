@@ -1,6 +1,6 @@
 {
   "name": "aekimena-month-year-picker",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Sleek, customizable month-year-picker for React Native applications",
   "main": "dist/index.js",
   "module": "dist/index.mjs",

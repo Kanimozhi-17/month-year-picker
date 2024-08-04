@@ -155,9 +155,7 @@ const MonthYearPicker = ({
                 year: yearsData[higlightedYear],
                 month: highlightedMonth,
                 day:
-                  showDays == false
-                    ? undefined
-                    : daysData[highlightedMonthDay + 1],
+                  showDays == false ? undefined : daysData[highlightedMonthDay],
               })
             );
           }}
