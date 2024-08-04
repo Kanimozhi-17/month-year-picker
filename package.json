@@ -1,0 +1,60 @@
+{
+  "name": "aekimena-month-year-picker",
+  "version": "1.0.0",
+  "description": "Sleek, customizable month-year-picker for React Native applications",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rollup -c --bundleConfigAsCjs",
+    "start": "rollup -c -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aekimena/month-year-picker.git"
+  },
+  "keywords": [
+    "react-native",
+    "react-native-component",
+    "month-picker",
+    "year-picker",
+    "date-picker",
+    "calendar-picker",
+    "custom-picker",
+    "date-selector",
+    "modal-picker",
+    "animated-picker",
+    "date-range",
+    "date-input",
+    "date-selector"
+  ],
+  "author": "Arinze Emmanuel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aekimena/month-year-picker/issues"
+  },
+  "homepage": "https://github.com/aekimena/month-year-picker#readme",
+  "devDependencies": {
+    "@babel/preset-env": "^7.25.3",
+    "@babel/preset-react": "^7.24.7",
+    "@rollup/plugin-commonjs": "^26.0.1",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^11.1.6",
+    "@types/react": "^18.3.3",
+    "rollup-plugin-dts": "^6.1.1",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "typescript": "^5.5.4"
+  },
+  "peerDependencies": {
+    "react": ">= 17.0.1",
+    "react-native": ">= 0.64.3"
+  },
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "rollup": "^4.20.0"
+  }
+}
