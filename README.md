@@ -18,8 +18,10 @@ or
 
 ## Basic Usage
 
-```javascript
-import MonthYearPicker from "aekimena-month-year-picker";
+```tsx
+import React, { useState } from "react";
+import { View, StyleSheet, Button } from "react-native";
+import MonthYearPicker from "@aekimena/month-year-picker";
 
 const App = () => {
   const [visible, setVisible] = useState(false);
@@ -27,26 +29,28 @@ const App = () => {
 
   return (
     <View style={styles.container}>
+      <Button title="Show Picker" onPress={() => setVisible(true)} />
       <MonthYearPicker
         visible={visible}
-        onBackgroundPress={() => setVisible(false)}
         onRequestClose={() => setVisible(false)}
-        onConfirm={(value) => {
-          setDate(value);
+        onConfirm={(text) => {
+          setDate(text);
         }}
-        minDate="2020-12-30"
-        maxDate="2026-12-30"
-        disableFutureMonths={false}
-        showDays={true}
-        transparent={true}
-        opacity={0.3}
-        animationType="slide"
       />
     </View>
   );
 };
 
 export default App;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#9FBBBB",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+});
 ```
 
 ## Props
@@ -62,7 +66,7 @@ export default App;
 | containerStyle      | ViewStyle                   | Custom styles for the month-year picker container.                          |              |
 | maxDate             | string                      | Specifies the maximum date that can be selected.                            | "2024-12-30" |
 | minDate             | string                      | Specifies the minimum date that can be selected.                            | "1970-12-30" |
-| onConfirm           | (value: string) => void     | Callback function triggered when the confirm button is pressed.             |              |
+| onConfirm           | (text: string) => void      | Callback function triggered when the confirm button is pressed.             |              |
 | showDays            | boolean                     | Determines if the days list should be shown                                 | true         |
 | highlighterStyle    | ViewStyle                   | Custom styles for the highlighter.                                          |              |
 | itemTextStyle       | TextStyle                   | Custom styles for the text items.                                           |              |
@@ -71,3 +75,30 @@ export default App;
 | buttonTextStyle     | TextStyle                   | Custom styles for the button text.                                          |              |
 | buttonText          | string                      | Text displayed on the button.                                               | "Confirm"    |
 | disableFutureMonths | boolean                     | Disables months that comes after the current month within the current year. | false        |
+
+## Contributing
+
+> To get started...
+
+### Step 1
+
+- **Option 1**
+
+  - 🍴 Fork this repo!
+
+- **Option 2**
+  - 👯 Clone this repo to your local machine using `https://github.com/aekimena/month-year-picker`
+
+### Step 2
+
+- **DO YOUR THING!** 🤌
+
+### Step 3
+
+- 🔃 Create a new pull request using <a href="https://github.com/aekimena/month-year-picker" target="_blank">`https://github.com/aekimena/month-year-picker`</a>.
+
+## License
+
+[![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
+
+- **[MIT license](http://opensource.org/licenses/mit-license.php)**
