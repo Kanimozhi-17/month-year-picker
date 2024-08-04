@@ -21,7 +21,7 @@ or
 ```tsx
 import React, { useState } from "react";
 import { View, StyleSheet, Button } from "react-native";
-import MonthYearPicker from "@aekimena/month-year-picker";
+import MonthYearPicker from "aekimena-month-year-picker";
 
 const App = () => {
   const [visible, setVisible] = useState(false);
