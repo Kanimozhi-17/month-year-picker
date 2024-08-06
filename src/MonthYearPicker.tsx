@@ -1,16 +1,14 @@
 import { Modal, Pressable, View } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./styles";
 import { getYears } from "./functions/getYears";
 import { getDaysInMonth } from "./functions/getDays";
 import { getDateDateString } from "./functions/getDateString";
-import { monthsArr } from "./utils/months";
 import { DateFlatList } from "./components/DateFlatList";
 import { Highlighter } from "./components/Highlighter";
 import { ConfirmButton } from "./components/ConfirmButton";
 import { MonthYearPickerProps } from "./typings";
-
-const currentDate = new Date();
+import { monthsArrayObj } from "./utils/months";
 
 const MonthYearPicker = ({
   visible = false,
@@ -20,8 +18,8 @@ const MonthYearPicker = ({
   onBackgroundPress,
   opacity = 0.5,
   containerStyle,
-  maxDate = "2024-12-1",
-  minDate = "1970-12-1",
+  maxDate = new Date().toISOString(),
+  minDate = "2000-01-01",
   onConfirm,
   showDays = true,
   highlighterStyle,
@@ -30,52 +28,43 @@ const MonthYearPicker = ({
   buttonStyle,
   buttonTextStyle,
   buttonText = "Confirm",
-  disableFutureMonths = false,
 }: MonthYearPickerProps) => {
+  const maxDateToCheck = new Date(maxDate);
+  const minDateToCheck = new Date(minDate);
   // years array
   const yearsData: Array<number> = getYears({ maxDate, minDate });
 
-  // months array
-  const monthsData: Array<string> = monthsArr;
-
   // highlighted year
   const [higlightedYear, setHighlightedYear] = useState<number>(
-    yearsData.indexOf(currentDate.getFullYear())
+    yearsData.length - 1
   );
 
   // highlighted month
   const [highlightedMonth, setHighlightedMonth] = useState<number>(
-    monthsData.indexOf(monthsData[currentDate.getMonth()])
+    getMonthsData().length - 1
   );
 
   // days array
   const daysData: Array<number> = getDaysInMonth({
-    month: highlightedMonth,
-    year: higlightedYear,
+    month: getMonthsData()[highlightedMonth]?.id,
+    year: yearsData[higlightedYear],
   });
 
   // highlighted day
 
   const [highlightedMonthDay, setHighlightedMonthDay] = useState<number>(
-    daysData.indexOf(currentDate.getDate())
+    getDaysData().length - 1
   );
 
   // Check if the provided date is a valid date type
-  const maxDateToCheck = new Date(maxDate);
-  const minDateToCheck = new Date(minDate);
 
   if (isNaN(maxDateToCheck.getTime()) || isNaN(minDateToCheck.getTime())) {
     throw new Error("Date must be a valid date type");
   }
 
   // Check if the provided date is less/greater than the current date
-  if (maxDateToCheck < currentDate) {
-    throw new Error(
-      "Max date must be greater than or equal to the current date"
-    );
-  }
-  if (minDateToCheck >= currentDate) {
-    throw new Error("Min date must be less than the current date");
+  if (maxDateToCheck < minDateToCheck) {
+    throw new Error("Max date must be greater than Min date");
   }
 
   // check for opacity error
@@ -89,13 +78,58 @@ const MonthYearPicker = ({
   // get months array to display
 
   function getMonthsData() {
-    if (disableFutureMonths) {
-      return yearsData[higlightedYear] == currentDate.getFullYear()
-        ? monthsData.slice(0, currentDate.getMonth() + 1)
-        : monthsData;
+    if (maxDateToCheck.getFullYear() == minDateToCheck.getFullYear()) {
+      return monthsArrayObj.slice(
+        minDateToCheck.getMonth(),
+        maxDateToCheck.getMonth() + 1
+      );
     }
-    return monthsData;
+    if (maxDateToCheck.getFullYear() == yearsData[higlightedYear]) {
+      return monthsArrayObj.slice(0, maxDateToCheck.getMonth() + 1);
+    }
+
+    if (minDateToCheck.getFullYear() == yearsData[higlightedYear]) {
+      return monthsArrayObj.slice(minDateToCheck.getMonth());
+    }
+
+    return monthsArrayObj;
   }
+
+  // only month strings in array
+  const modifiedMonth = getMonthsData().map((item) => {
+    return item.month;
+  });
+
+  // get days data from highlighted month
+  function getDaysData() {
+    if (
+      maxDateToCheck.getFullYear() == yearsData[higlightedYear] &&
+      maxDateToCheck.getMonth() == getMonthsData()[highlightedMonth]?.id
+    ) {
+      return daysData.slice(0, maxDateToCheck.getDate());
+    }
+    if (
+      minDateToCheck.getFullYear() == yearsData[higlightedYear] &&
+      minDateToCheck.getMonth() == getMonthsData()[highlightedMonth]?.id
+    ) {
+      return daysData.slice(minDateToCheck.getDate() - 1);
+    }
+    return daysData;
+  }
+
+  // set back to initial
+
+  function backToDefault() {
+    setHighlightedMonth(maxDateToCheck.getMonth());
+    setHighlightedMonthDay(maxDateToCheck.getDate() - 1);
+    setHighlightedYear(yearsData.length - 1);
+  }
+
+  useEffect(() => {
+    if (visible == false) {
+      backToDefault();
+    }
+  }, [visible]);
 
   return (
     <Modal
@@ -111,24 +145,22 @@ const MonthYearPicker = ({
             {/* days flatlist */}
             {showDays == true && (
               <DateFlatList
-                data={daysData}
+                data={getDaysData()}
                 onScrollToIndex={setHighlightedMonthDay}
-                highlightedItem={daysData[highlightedMonthDay]}
-                yScrollOffset={daysData.indexOf(currentDate.getDate()) * 50}
+                highlightedItem={getDaysData()[highlightedMonthDay]}
+                yScrollOffset={(getDaysData().length - 1) * 50}
                 itemContainerStyle={itemContainerStyle}
                 itemTextStyle={itemTextStyle}
               />
             )}
             {/* months flatlist */}
             <DateFlatList
-              data={getMonthsData()}
+              data={modifiedMonth}
               onScrollToIndex={(num) => {
                 setHighlightedMonth(num);
               }}
-              highlightedItem={monthsData[highlightedMonth]}
-              yScrollOffset={
-                monthsData.indexOf(monthsData[currentDate.getMonth()]) * 50
-              }
+              highlightedItem={modifiedMonth[highlightedMonth]}
+              yScrollOffset={(modifiedMonth.length - 1) * 50}
               itemContainerStyle={itemContainerStyle}
               itemTextStyle={itemTextStyle}
             />
@@ -137,7 +169,7 @@ const MonthYearPicker = ({
               data={yearsData}
               onScrollToIndex={setHighlightedYear}
               highlightedItem={yearsData[higlightedYear]}
-              yScrollOffset={yearsData.indexOf(currentDate.getFullYear()) * 50}
+              yScrollOffset={(yearsData.length - 1) * 50}
               itemContainerStyle={itemContainerStyle}
               itemTextStyle={itemTextStyle}
             />
@@ -153,9 +185,11 @@ const MonthYearPicker = ({
             onConfirm(
               getDateDateString({
                 year: yearsData[higlightedYear],
-                month: highlightedMonth,
+                month: getMonthsData()[highlightedMonth].id,
                 day:
-                  showDays == false ? undefined : daysData[highlightedMonthDay],
+                  showDays == false
+                    ? undefined
+                    : getDaysData()[highlightedMonthDay],
               })
             );
           }}
