@@ -10,6 +10,7 @@ export const DateFlatList = ({
   highlightedItem,
   itemTextStyle,
   itemContainerStyle,
+  highlightedItemStyle,
 }: DateFlatListProps) => {
   return (
     <View style={{ flex: 1 }}>
@@ -29,11 +30,12 @@ export const DateFlatList = ({
             <Text
               style={[
                 styles.itemText,
-                highlightedItem == item && {
-                  fontSize: 20,
-                  fontWeight: "500",
-                },
                 itemTextStyle,
+                highlightedItem == item &&
+                  (highlightedItemStyle || {
+                    fontSize: 20,
+                    fontWeight: "500",
+                  }),
               ]}
             >
               {typeof item == "number" && item < 10 ? "0" + item : item}

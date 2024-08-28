@@ -55,26 +55,26 @@ const styles = StyleSheet.create({
 
 ## Props
 
-| **Props**           | **Type**                    | **Description**                                                             | **Default**  |
-| ------------------- | --------------------------- | --------------------------------------------------------------------------- | ------------ |
-| visible             | boolean                     | Determines whether the month-year picker is visible                         | false        |
-| animationType       | "none" \| "slide" \| "fade" | Specifies the animation type for the modal presentation.                    | "fade"       |
-| transparent         | boolean                     | Indicates if the modal should be transparent.                               | true         |
-| onRequestClose      | () => void                  | Callback function triggered when the request to close the modal occurs.     |              |
-| onBackgroundPress   | () => void                  | Callback function triggered when the modal background is pressed.           |              |
-| opacity             | number                      | Sets the opacity of the modal background.                                   | 0.5          |
-| containerStyle      | ViewStyle                   | Custom styles for the month-year picker container.                          |              |
-| maxDate             | string                      | Specifies the maximum date that can be selected.                            | "2024-12-30" |
-| minDate             | string                      | Specifies the minimum date that can be selected.                            | "1970-12-30" |
-| onConfirm           | (text: string) => void      | Callback function triggered when the confirm button is pressed.             |              |
-| showDays            | boolean                     | Determines if the days list should be shown                                 | true         |
-| highlighterStyle    | ViewStyle                   | Custom styles for the highlighter.                                          |              |
-| itemTextStyle       | TextStyle                   | Custom styles for the text items.                                           |              |
-| itemContainerStyle  | ViewStyle                   | Custom styles for the text item container.                                  |              |
-| buttonStyle         | ViewStyle                   | Custom styles for the button.                                               |              |
-| buttonTextStyle     | TextStyle                   | Custom styles for the button text.                                          |              |
-| buttonText          | string                      | Text displayed on the button.                                               | "Confirm"    |
-| disableFutureMonths | boolean                     | Disables months that comes after the current month within the current year. | false        |
+| **Props**            | **Type**                    | **Description**                                                         | **Default**    |
+| -------------------- | --------------------------- | ----------------------------------------------------------------------- | -------------- |
+| visible              | boolean                     | Determines whether the month-year picker is visible                     | false          |
+| animationType        | "none" \| "slide" \| "fade" | Specifies the animation type for the modal presentation.                | "fade"         |
+| transparent          | boolean                     | Indicates if the modal should be transparent.                           | true           |
+| onRequestClose       | () => void                  | Callback function triggered when the request to close the modal occurs. |                |
+| onBackgroundPress    | () => void                  | Callback function triggered when the modal background is pressed.       |                |
+| opacity              | number                      | Sets the opacity of the modal background.                               | 0.5            |
+| containerStyle       | ViewStyle                   | Custom styles for the month-year picker container.                      |                |
+| maxDate              | string                      | Specifies the maximum date that can be selected.                        | "Current date" |
+| minDate              | string                      | Specifies the minimum date that can be selected.                        | "2000-01-01"   |
+| onConfirm            | (text: string) => void      | Callback function triggered when the confirm button is pressed.         |                |
+| showDays             | boolean                     | Determines if the days list should be shown                             | true           |
+| highlighterStyle     | ViewStyle                   | Custom styles for the highlighter.                                      |                |
+| itemTextStyle        | TextStyle                   | Custom styles for the text items.                                       |                |
+| itemContainerStyle   | ViewStyle                   | Custom styles for the text item container.                              |                |
+| buttonStyle          | ViewStyle                   | Custom styles for the button.                                           |                |
+| buttonTextStyle      | TextStyle                   | Custom styles for the button text.                                      |                |
+| buttonText           | string                      | Text displayed on the button.                                           | "Confirm"      |
+| highlightedItemStyle | TextStyle                   | Custom styles for the highlighted items                                 |                |
 
 ## Contributing
 

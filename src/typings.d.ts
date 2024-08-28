@@ -31,12 +31,12 @@ export type MonthYearPickerProps = {
   containerStyle?: ViewStyle;
 
   /** Specifies the maximum date that can be selected.
-   * @default "2024-12-30"
+   * @default "Current date"
    */
   maxDate?: string;
 
   /** Specifies the minimum date that can be selected.
-   * @default "1970-12-30"
+   * @default "2000-01-01"
    */
   minDate?: string;
 
@@ -57,6 +57,10 @@ export type MonthYearPickerProps = {
   /** Custom styles for the text item container. */
   itemContainerStyle?: ViewStyle;
 
+  /** Custom styles for the highlighted items */
+
+  highlightedItemStyle?: TextStyle;
+
   /** Custom styles for the button. */
   buttonStyle?: ViewStyle;
 
@@ -67,11 +71,6 @@ export type MonthYearPickerProps = {
    * @default "Confirm"
    */
   buttonText?: string;
-
-  /** Disables months that come after the current month within the current year.
-   * @default false
-   */
-  disableFutureMonths?: boolean;
 };
 
 type ButtonProps = {
@@ -88,4 +87,5 @@ type DateFlatListProps = {
   yScrollOffset: number;
   itemTextStyle: TextStyle;
   itemContainerStyle: ViewStyle;
+  highlightedItemStyle: TextStyle;
 };

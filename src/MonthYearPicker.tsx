@@ -28,6 +28,7 @@ const MonthYearPicker = ({
   buttonStyle,
   buttonTextStyle,
   buttonText = "Confirm",
+  highlightedItemStyle,
 }: MonthYearPickerProps) => {
   const maxDateToCheck = new Date(maxDate);
   const minDateToCheck = new Date(minDate);
@@ -151,6 +152,7 @@ const MonthYearPicker = ({
                 yScrollOffset={(getDaysData().length - 1) * 50}
                 itemContainerStyle={itemContainerStyle}
                 itemTextStyle={itemTextStyle}
+                highlightedItemStyle={highlightedItemStyle}
               />
             )}
             {/* months flatlist */}
@@ -163,6 +165,7 @@ const MonthYearPicker = ({
               yScrollOffset={(modifiedMonth.length - 1) * 50}
               itemContainerStyle={itemContainerStyle}
               itemTextStyle={itemTextStyle}
+              highlightedItemStyle={highlightedItemStyle}
             />
             {/* years flatlist */}
             <DateFlatList
@@ -172,6 +175,7 @@ const MonthYearPicker = ({
               yScrollOffset={(yearsData.length - 1) * 50}
               itemContainerStyle={itemContainerStyle}
               itemTextStyle={itemTextStyle}
+              highlightedItemStyle={highlightedItemStyle}
             />
             <Highlighter highlighterStyle={highlighterStyle} />
           </View>
