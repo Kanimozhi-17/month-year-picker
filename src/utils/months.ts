@@ -2,7 +2,7 @@ export const monthsArrayObj = [
   { id: 0, month: "Jan" },
   { id: 1, month: "Feb" },
   { id: 2, month: "Mar" },
-  { id: 3, month: "Api" },
+  { id: 3, month: "Apr" },
   { id: 4, month: "May" },
   { id: 5, month: "Jun" },
   { id: 6, month: "Jul" },
