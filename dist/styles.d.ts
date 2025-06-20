@@ -1,0 +1,57 @@
+declare const _default: {
+    modalContainer: {
+        width: "100%";
+        flex: number;
+        justifyContent: "center";
+        alignItems: "center";
+        zIndex: number;
+    };
+    containerStyle: {
+        width: "90%";
+        backgroundColor: string;
+        borderRadius: number;
+        overflow: "hidden";
+    };
+    ConfirmButtonStyle: {
+        paddingVertical: number;
+        paddingHorizontal: number;
+        alignItems: "center";
+        justifyContent: "center";
+        backgroundColor: string;
+        borderRadius: number;
+    };
+    buttonTextStyle: {
+        fontSize: number;
+        color: string;
+    };
+    innerContainer: {
+        flex: number;
+        flexDirection: "row";
+        justifyContent: "center";
+    };
+    highlighter: {
+        height: number;
+        width: "100%";
+        backgroundColor: string;
+        zIndex: number;
+    };
+    itemContainer: {
+        height: number;
+        justifyContent: "center";
+        alignItems: "center";
+        width: "100%";
+    };
+    itemText: {
+        fontSize: number;
+        color: string;
+    };
+    listContainer: {
+        paddingBottom: number;
+        paddingTop: number;
+    };
+    absolutePressItem: {
+        height: "100%";
+        width: "100%";
+    };
+};
+export default _default;
