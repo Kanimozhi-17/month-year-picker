@@ -6,8 +6,6 @@ export default StyleSheet.create({
     justifyContent: "flex-end",
     alignItems: "center",
     zIndex: 5,
-    position: "absolute",
-    bottom: 30,
   },
   containerStyle: {
     width: "90%",
@@ -22,7 +20,6 @@ export default StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "#000",
     borderRadius: 10,
-    top: 10,
   },
   buttonTextStyle: {
     fontSize: 16,
@@ -35,10 +32,8 @@ export default StyleSheet.create({
   },
   highlighter: {
     height: 50,
-    top: 100,
     width: "100%",
     backgroundColor: "rgba(0,0,0,0.1)",
-    position: "absolute",
     zIndex: -1,
   },
   itemContainer: {
@@ -56,5 +51,5 @@ export default StyleSheet.create({
     paddingBottom: 100,
     paddingTop: 100,
   },
-  absolutePressItem: { position: "absolute", height: "100%", width: "100%" },
+  absolutePressItem: { height: "100%", width: "100%" },
 });
