@@ -19,5 +19,5 @@ export function getDateDateString({
   }
 
   // Return the date string in the format 'YYYY-MM-DD'
-  return date.toLocaleString();
+  return date.toISOString();
 }
