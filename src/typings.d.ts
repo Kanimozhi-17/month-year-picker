@@ -50,6 +50,8 @@ export type MonthYearPickerProps = {
    */
   showDays?: boolean;
 
+  showMonth?:boolean;
+
   /** Custom styles for the highlighter. */
   highlighterStyle?: ViewStyle;
 

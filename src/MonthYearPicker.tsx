@@ -23,6 +23,7 @@ const MonthYearPicker = ({
   minDate = "2000-01-01",
   onConfirm,
   showDays = true,
+  showMonth = true,
   highlighterStyle,
   itemContainerStyle,
   itemTextStyle,
@@ -157,7 +158,7 @@ const MonthYearPicker = ({
               />
             )}
             {/* months flatlist */}
-            <DateFlatList
+            { showMonth && <DateFlatList
               data={modifiedMonth}
               onScrollToIndex={(num) => {
                 setHighlightedMonth(num);
@@ -167,7 +168,7 @@ const MonthYearPicker = ({
               itemContainerStyle={itemContainerStyle}
               itemTextStyle={itemTextStyle}
               highlightedItemStyle={highlightedItemStyle}
-            />
+            /> }
             {/* years flatlist */}
             <DateFlatList
               data={yearsData}
