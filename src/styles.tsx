@@ -3,6 +3,7 @@ import { StyleSheet } from "react-native";
 export default StyleSheet.create({
   modalContainer: {
     width: "100%",
+    flex: 1,
     justifyContent: "center",
     alignItems: "center",
     zIndex: 5,
@@ -22,7 +23,7 @@ export default StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "#000",
     borderRadius: 10,
-    top: 10,
+    top: 20,
   },
   buttonTextStyle: {
     fontSize: 16,
@@ -56,5 +57,5 @@ export default StyleSheet.create({
     paddingBottom: 100,
     paddingTop: 100,
   },
-  absolutePressItem: { position: "absolute", height: "100%", paddingHorizontal: 25, marginHorizontal: "auto" },
+  absolutePressItem: { position: "absolute", height: "100%", width: "100%" },
 });
