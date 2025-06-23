@@ -1,6 +1,8 @@
 declare const _default: {
     modalContainer: {
         width: "100%";
+        justifyContent: "center";
+        alignItems: "center";
         zIndex: number;
     };
     containerStyle: {
@@ -52,7 +54,8 @@ declare const _default: {
     absolutePressItem: {
         position: "absolute";
         height: "100%";
-        width: "100%";
+        paddingHorizontal: number;
+        marginHorizontal: "auto";
     };
 };
 export default _default;
