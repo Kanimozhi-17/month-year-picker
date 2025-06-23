@@ -19,7 +19,7 @@ const MonthYearPicker = ({
   opacity = 0.5,
   containerStyle,
   modalContainer,
-  maxDate = new Date().toISOString(),
+  maxDate = new Date().toLocaleString(),
   minDate = "2000-01-01",
   onConfirm,
   showDays = true,
