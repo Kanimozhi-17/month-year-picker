@@ -3,8 +3,8 @@ import { StyleSheet } from "react-native";
 export default StyleSheet.create({
   modalContainer: {
     width: "100%",
-    // justifyContent: "flex-end",
-    // alignItems: "center",
+    justifyContent: "center",
+    alignItems: "center",
     zIndex: 5,
     // position: "absolute",
     // bottom: 30,
@@ -56,5 +56,5 @@ export default StyleSheet.create({
     paddingBottom: 100,
     paddingTop: 100,
   },
-  absolutePressItem: { position: "absolute", height: "100%", width: "100%" },
+  absolutePressItem: { position: "absolute", height: "100%", paddingHorizontal: 25, marginHorizontal: "auto" },
 });
