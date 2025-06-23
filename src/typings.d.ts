@@ -30,6 +30,8 @@ export type MonthYearPickerProps = {
   /** Custom styles for the month-year picker container. */
   containerStyle?: ViewStyle;
 
+   modalContainer?: ViewStyle;
+
   /** Specifies the maximum date that can be selected.
    * @default "Current date"
    */
