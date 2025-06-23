@@ -19,7 +19,8 @@ export const DateFlatList = ({
           const scrollOffset = event.nativeEvent.contentOffset.y;
           onScrollToIndex(Math.round(scrollOffset / 50));
         }}
-        contentOffset={{ x: 0, y: yScrollOffset }}
+        // contentOffset={{ x: 0, y: yScrollOffset }}
+        initialScrollIndex={data.length - 1} 
         data={data}
         contentContainerStyle={styles.listContainer}
         keyExtractor={(item) => item.toString()}
