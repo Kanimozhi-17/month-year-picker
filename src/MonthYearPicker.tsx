@@ -19,6 +19,7 @@ const MonthYearPicker = ({
   opacity = 0.5,
   containerStyle,
   modalContainer,
+  wholeContainer,
   maxDate = new Date().toISOString(),
   minDate = "2000-01-01",
   onConfirm,
@@ -142,6 +143,7 @@ const MonthYearPicker = ({
       statusBarTranslucent
       onRequestClose={onRequestClose}
     >
+    <View style={wholeContainer}>
       <View style={[styles.modalContainer, modalContainer]}>
         <View style={[styles.containerStyle, containerStyle, { height: 250 }]}>
           <View style={styles.innerContainer}>
@@ -201,6 +203,7 @@ const MonthYearPicker = ({
           }}
         />
       </View>
+    </View>
       {/* background */}
       <Pressable
         onPress={onBackgroundPress}

@@ -33,6 +33,8 @@ type MonthYearPickerProps = {
 
    modalContainer?: ViewStyle;
 
+   wholeContainer?: ViewStyle;
+
   /** Specifies the maximum date that can be selected.
    * @default "Current date"
    */
@@ -78,6 +80,6 @@ type MonthYearPickerProps = {
   buttonText?: string;
 };
 
-declare const MonthYearPicker: ({ visible, animationType, transparent, onRequestClose, onBackgroundPress, opacity, containerStyle, modalContainer, maxDate, minDate, onConfirm, showDays, showMonth, highlighterStyle, itemContainerStyle, itemTextStyle, buttonStyle, buttonTextStyle, buttonText, highlightedItemStyle, }: MonthYearPickerProps) => React.JSX.Element;
+declare const MonthYearPicker: ({ visible, animationType, transparent, onRequestClose, onBackgroundPress, opacity, containerStyle, modalContainer, wholeContainer, maxDate, minDate, onConfirm, showDays, showMonth, highlighterStyle, itemContainerStyle, itemTextStyle, buttonStyle, buttonTextStyle, buttonText, highlightedItemStyle, }: MonthYearPickerProps) => React.JSX.Element;
 
 export { MonthYearPicker as default };

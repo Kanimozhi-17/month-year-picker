@@ -32,6 +32,8 @@ export type MonthYearPickerProps = {
 
    modalContainer?: ViewStyle;
 
+   wholeContainer?: ViewStyle;
+
   /** Specifies the maximum date that can be selected.
    * @default "Current date"
    */
