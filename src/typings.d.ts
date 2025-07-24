@@ -90,7 +90,7 @@ type ButtonProps = {
 
 type DateFlatListProps = {
   data: Array<number | string>;
-  value: number ;
+  value: number | string;
   onScrollToIndex: (index: number) => void;
   highlightedItem: number | string;
   yScrollOffset: number;
