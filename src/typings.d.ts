@@ -44,6 +44,8 @@ export type MonthYearPickerProps = {
    */
   minDate?: string;
 
+  defaultvalue?: string;
+
   /** Callback function triggered when the confirm button is pressed. */
   onConfirm: (value: string) => void;
 
@@ -88,6 +90,7 @@ type ButtonProps = {
 
 type DateFlatListProps = {
   data: Array<number | string>;
+  value: number ;
   onScrollToIndex: (index: number) => void;
   highlightedItem: number | string;
   yScrollOffset: number;

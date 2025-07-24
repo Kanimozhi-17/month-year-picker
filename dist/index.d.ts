@@ -45,6 +45,8 @@ type MonthYearPickerProps = {
    */
   minDate?: string;
 
+  defaultvalue?: string;
+
   /** Callback function triggered when the confirm button is pressed. */
   onConfirm: (value: string) => void;
 
@@ -80,6 +82,6 @@ type MonthYearPickerProps = {
   buttonText?: string;
 };
 
-declare const MonthYearPicker: ({ visible, animationType, transparent, onRequestClose, onBackgroundPress, opacity, containerStyle, modalContainer, wholeContainer, maxDate, minDate, onConfirm, showDays, showMonth, highlighterStyle, itemContainerStyle, itemTextStyle, buttonStyle, buttonTextStyle, buttonText, highlightedItemStyle, }: MonthYearPickerProps) => React.JSX.Element;
+declare const MonthYearPicker: ({ visible, animationType, transparent, onRequestClose, onBackgroundPress, defaultvalue, opacity, containerStyle, modalContainer, wholeContainer, maxDate, minDate, onConfirm, showDays, showMonth, highlighterStyle, itemContainerStyle, itemTextStyle, buttonStyle, buttonTextStyle, buttonText, highlightedItemStyle, }: MonthYearPickerProps) => React.JSX.Element;
 
 export { MonthYearPicker as default };

@@ -16,6 +16,7 @@ const MonthYearPicker = ({
   transparent = true,
   onRequestClose,
   onBackgroundPress,
+  defaultvalue = `${new Date().getFullYear()} - ${new Date().getMonth() - 1} - ${new Date().getDate()}`,
   opacity = 0.5,
   containerStyle,
   modalContainer,
@@ -35,6 +36,7 @@ const MonthYearPicker = ({
 }: MonthYearPickerProps) => {
   const maxDateToCheck = new Date(maxDate);
   const minDateToCheck = new Date(minDate);
+  const defaultDisplayDate = defaultvalue?.split("-").map(Number)
   // years array
   const yearsData: Array<number> = getYears({ maxDate, minDate });
 
@@ -104,6 +106,10 @@ const MonthYearPicker = ({
     return item.month;
   });
 
+  //get display value from value
+
+  
+
   // get days data from highlighted month
   function getDaysData() {
     if (
@@ -151,6 +157,7 @@ const MonthYearPicker = ({
             {showDays == true && (
               <DateFlatList
                 data={getDaysData()}
+                value={defaultDisplayDate[2]}
                 onScrollToIndex={setHighlightedMonthDay}
                 highlightedItem={getDaysData()[highlightedMonthDay]}
                 yScrollOffset={(getDaysData().length - 1) * 50}
@@ -162,6 +169,7 @@ const MonthYearPicker = ({
             {/* months flatlist */}
             { showMonth && <DateFlatList
               data={modifiedMonth}
+              value={defaultDisplayDate[1]}
               onScrollToIndex={(num) => {
                 setHighlightedMonth(num);
               }}
@@ -175,6 +183,7 @@ const MonthYearPicker = ({
             <DateFlatList
               data={yearsData}
               onScrollToIndex={setHighlightedYear}
+              value={defaultDisplayDate[0]}
               highlightedItem={yearsData[higlightedYear]}
               yScrollOffset={(yearsData.length - 1) * 50}
               itemContainerStyle={itemContainerStyle}

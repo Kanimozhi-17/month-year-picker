@@ -7,6 +7,7 @@ export const DateFlatList = ({
   data,
   onScrollToIndex,
   yScrollOffset,
+  value,
   highlightedItem,
   itemTextStyle,
   itemContainerStyle,
@@ -20,7 +21,7 @@ export const DateFlatList = ({
           onScrollToIndex(Math.round(scrollOffset / 50));
         }}
         // contentOffset={{ x: 0, y: yScrollOffset }}
-        initialScrollIndex={data.length - 1} 
+        initialScrollIndex={data?.findIndex(item => item === value)} 
         data={data}
         contentContainerStyle={styles.listContainer}
         keyExtractor={(item) => item.toString()}
