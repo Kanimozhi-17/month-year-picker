@@ -169,7 +169,7 @@ const MonthYearPicker = ({
             {/* months flatlist */}
             { showMonth && <DateFlatList
               data={modifiedMonth}
-              value={defaultDisplayDate[1]}
+              value={defaultDisplayDate[1].trim()}
               onScrollToIndex={(num) => {
                 setHighlightedMonth(num);
               }}
