@@ -39,12 +39,12 @@ const MonthYearPicker = ({
   const defaultDisplayDate = defaultvalue?.split("-")
   // years array
   const yearsData: Array<number> = getYears({ maxDate, minDate });
-  // highlighted year
-  const [higlightedYear, setHighlightedYear] = useState<number>(() => {
-  const year = Number(defaultDisplayDate[0]);
-  const index = yearsData.indexOf(year);
+ // Highlighted year
+const [higlightedYear, setHighlightedYear] = useState(() => {
+  const index = yearsData.indexOf(Number(defaultDisplayDate[0]));
   return index !== -1 ? index : yearsData.length - 1;
 });
+
 
     // get months array to display
 
@@ -79,13 +79,13 @@ const MonthYearPicker = ({
   return monthsArrayObj;
 }
 
-  // Highlighted month
-const [highlightedMonth, setHighlightedMonth] = useState<number>(() => {
-  const year = Number(defaultDisplayDate[0]);
-  const monthStr = defaultDisplayDate[1];
-  const months = getMonthsDataForYear(year);
-  const index = months.findIndex(m => m.month === monthStr);
-  return index !== -1 ? index : months.length - 1;
+// Months for the default year
+const defaultYearMonths = getMonthsDataForYear(Number(defaultDisplayDate[0]));
+
+// Highlighted month
+const [highlightedMonth, setHighlightedMonth] = useState(() => {
+  const index = defaultYearMonths.findIndex(m => m.month === defaultDisplayDate[1]);
+  return index !== -1 ? index : 0;
 });
 
   const monthObj = getMonthsData()[highlightedMonth];
@@ -120,15 +120,18 @@ const [highlightedMonth, setHighlightedMonth] = useState<number>(() => {
 
   // highlighted day
   const days = getDaysData();
+  // Days for the highlighted month
+  const defaultMonthObj = defaultYearMonths[highlightedMonth];
+  const defaultMonthDays = getDaysInMonth({
+    month: defaultMonthObj?.id ?? 1,
+    year: Number(defaultDisplayDate[0])
+  });
 
 // Highlighted day
-const [highlightedMonthDay, setHighlightedMonthDay] = useState<number>(() => {
-  const day = Number(defaultDisplayDate[2]);
-  const months = getMonthsDataForYear(Number(defaultDisplayDate[0]));
-  const monthObj = months.find(m => m.month === defaultDisplayDate[1]);
-  const monthDays = getDaysInMonth({ month: monthObj?.id ?? 1, year: Number(defaultDisplayDate[0]) });
-  return Math.min(day - 1, monthDays.length - 1);
+const [highlightedMonthDay, setHighlightedMonthDay] = useState(() => {
+  return Math.min(Number(defaultDisplayDate[2]) - 1, defaultMonthDays.length - 1);
 });
+
 
   // Check if the provided date is a valid date type
 
@@ -159,28 +162,23 @@ const [highlightedMonthDay, setHighlightedMonthDay] = useState<number>(() => {
 
  
 
-  // set back to initial
-
- function backToDefault() {
+  function backToDefault() {
   const [yearStr, monthStr, dayStr] = defaultDisplayDate;
-
   const year = Number(yearStr);
   const day = Number(dayStr);
 
-  // Reset year
   const yearIndex = yearsData.indexOf(year);
   setHighlightedYear(yearIndex !== -1 ? yearIndex : yearsData.length - 1);
 
-  // Reset month
   const months = getMonthsDataForYear(year);
   const monthIndex = months.findIndex(m => m.month === monthStr);
   setHighlightedMonth(monthIndex !== -1 ? monthIndex : 0);
 
-  // Reset day
   const monthObj = months[monthIndex] ?? months[0];
   const monthDays = getDaysInMonth({ month: monthObj?.id ?? 1, year });
   setHighlightedMonthDay(Math.min(day - 1, monthDays.length - 1));
 }
+
 
 
 
