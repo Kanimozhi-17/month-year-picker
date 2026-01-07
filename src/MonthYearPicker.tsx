@@ -44,8 +44,9 @@ const MonthYearPicker = ({
   
   const chosenYear = yearsData?.findIndex(y => y === Number(defaultDisplayDate[0])) ?? yearsData?.length - 1
   const months = getMonthsData();
-  const chosenMonth = months.some(m => m.id === userMonth) ? userMonth : getMonthsData().length - 1
-  const chosenDate = getDaysData()?.findIndex(x => x === Number(defaultDisplayDate[2])) ??  getDaysData().length - 1
+  const days = getDaysData();
+  const chosenMonth = months.some(m => m.id === userMonth) ? userMonth : months?.length - 1
+  const chosenDate = days?.findIndex(x => x === Number(defaultDisplayDate[2])) ??  days.length - 1
   
   // highlighted year
   const [higlightedYear, setHighlightedYear] = useState<number>(
