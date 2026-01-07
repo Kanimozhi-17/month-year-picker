@@ -16,7 +16,7 @@ const MonthYearPicker = ({
   transparent = true,
   onRequestClose,
   onBackgroundPress,
-  defaultvalue = `${new Date().getFullYear()} - ${new Date().toLocaleString("en-US" , {month : 'short'})} - ${new Date().getDate()}`,
+  defaultvalue = `${new Date().getFullYear()}-${new Date().toLocaleString("en-US" , {month : 'short'})}-${new Date().getDate()}`,
   opacity = 0.5,
   containerStyle,
   modalContainer,
@@ -37,17 +37,19 @@ const MonthYearPicker = ({
   const maxDateToCheck = new Date(maxDate);
   const minDateToCheck = new Date(minDate);
   const defaultDisplayDate = defaultvalue?.split("-")
+  const choosedMonth = new Date(defaultvalue)?.getMonth() + 1
+  
   // years array
   const yearsData: Array<number> = getYears({ maxDate, minDate });
 
   // highlighted year
   const [higlightedYear, setHighlightedYear] = useState<number>(
-    yearsData.length - 1
+    Number(defaultDisplayDate[0])
   );
 
   // highlighted month
   const [highlightedMonth, setHighlightedMonth] = useState<number>(
-    getMonthsData().length - 1
+    choosedMonth
   );
 
   // days array
@@ -59,7 +61,7 @@ const MonthYearPicker = ({
   // highlighted day
 
   const [highlightedMonthDay, setHighlightedMonthDay] = useState<number>(
-    getDaysData().length - 1
+    Number(defaultDisplayDate[2])
   );
 
   // Check if the provided date is a valid date type
