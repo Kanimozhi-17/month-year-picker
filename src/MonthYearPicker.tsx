@@ -37,19 +37,24 @@ const MonthYearPicker = ({
   const maxDateToCheck = new Date(maxDate);
   const minDateToCheck = new Date(minDate);
   const defaultDisplayDate = defaultvalue?.split("-")
-  const choosedMonth = new Date(defaultvalue)?.getMonth() + 1
-  
+  const userMonth = new Date(defaultvalue)?.getMonth()
+
   // years array
   const yearsData: Array<number> = getYears({ maxDate, minDate });
-
+  
+  const chosenYear = yearsData?.findIndex(y => y === Number(defaultDisplayDate[0])) ?? yearsData?.length - 1
+  const months = getMonthsData();
+  const chosenMonth = months.some(m => m.id === userMonth) ? userMonth : getMonthsData().length - 1
+  const chosenDate = getDaysData()?.findIndex(x => x === Number(defaultDisplayDate[2])) ??  getDaysData().length - 1
+  
   // highlighted year
   const [higlightedYear, setHighlightedYear] = useState<number>(
-    Number(defaultDisplayDate[0])
+    chosenYear
   );
 
   // highlighted month
   const [highlightedMonth, setHighlightedMonth] = useState<number>(
-    choosedMonth
+    chosenMonth
   );
 
   // days array
@@ -61,7 +66,7 @@ const MonthYearPicker = ({
   // highlighted day
 
   const [highlightedMonthDay, setHighlightedMonthDay] = useState<number>(
-    Number(defaultDisplayDate[2])
+    chosenDate
   );
 
   // Check if the provided date is a valid date type
