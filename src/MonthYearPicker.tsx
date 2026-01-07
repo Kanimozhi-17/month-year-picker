@@ -37,26 +37,27 @@ const MonthYearPicker = ({
   const maxDateToCheck = new Date(maxDate);
   const minDateToCheck = new Date(minDate);
   const defaultDisplayDate = defaultvalue?.split("-")
-  const userMonth = new Date(defaultvalue)?.getMonth()
+  const userMonth = new Date(defaultvalue).getMonth() + 1;
 
   // years array
   const yearsData: Array<number> = getYears({ maxDate, minDate });
   
-  const chosenYear = yearsData?.findIndex(y => y === Number(defaultDisplayDate[0])) ?? yearsData?.length - 1
-  const months = getMonthsData();
-  const days = getDaysData();
-  const chosenMonth = months.some(m => m.id === userMonth) ? userMonth : months?.length - 1
-  const chosenDate = days?.findIndex(x => x === Number(defaultDisplayDate[2])) ??  days.length - 1
-  
+  const foundYearIndex = yearsData.findIndex( y => y === Number(defaultDisplayDate[0]));
+  const chosenYear = foundYearIndex >= 0 ? foundYearIndex : (yearsData?.length - 1);
   // highlighted year
   const [higlightedYear, setHighlightedYear] = useState<number>(
     chosenYear
   );
 
+  const months = getMonthsData();
+  const chosenMonthIndex = months.findIndex(m => m.id === userMonth);
+  const chosenMonth = chosenMonthIndex >= 0 ? chosenMonthIndex : months?.length - 1;
   // highlighted month
   const [highlightedMonth, setHighlightedMonth] = useState<number>(
     chosenMonth
   );
+  const days = getDaysData();
+  const chosenDate = days?.findIndex(x => x === Number(defaultDisplayDate[2])) ??  days?.length - 1
 
   // days array
   const daysData: Array<number> = getDaysInMonth({
@@ -140,7 +141,7 @@ const MonthYearPicker = ({
   function backToDefault() {
     setHighlightedMonth(maxDateToCheck.getMonth());
     setHighlightedMonthDay(maxDateToCheck.getDate() - 1);
-    setHighlightedYear(yearsData.length - 1);
+    setHighlightedYear(yearsData?.length - 1);
   }
 
   useEffect(() => {
@@ -168,7 +169,7 @@ const MonthYearPicker = ({
                 value={Number(defaultDisplayDate[2])}
                 onScrollToIndex={setHighlightedMonthDay}
                 highlightedItem={getDaysData()[highlightedMonthDay]}
-                yScrollOffset={(getDaysData().length - 1) * 50}
+                yScrollOffset={((getDaysData()?.length ?? 1) - 1) * 50}
                 itemContainerStyle={itemContainerStyle}
                 itemTextStyle={itemTextStyle}
                 highlightedItemStyle={highlightedItemStyle}
@@ -182,7 +183,7 @@ const MonthYearPicker = ({
                 setHighlightedMonth(num);
               }}
               highlightedItem={modifiedMonth[highlightedMonth]}
-              yScrollOffset={(modifiedMonth.length - 1) * 50}
+              yScrollOffset={((modifiedMonth?.length ?? 1) - 1) * 50}
               itemContainerStyle={itemContainerStyle}
               itemTextStyle={itemTextStyle}
               highlightedItemStyle={highlightedItemStyle}
@@ -193,7 +194,7 @@ const MonthYearPicker = ({
               onScrollToIndex={setHighlightedYear}
               value={Number(defaultDisplayDate[0])}
               highlightedItem={yearsData[higlightedYear]}
-              yScrollOffset={(yearsData.length - 1) * 50}
+              yScrollOffset={((yearsData?.length ?? 1)- 1) * 50}
               itemContainerStyle={itemContainerStyle}
               itemTextStyle={itemTextStyle}
               highlightedItemStyle={highlightedItemStyle}
